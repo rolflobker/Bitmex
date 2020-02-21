@@ -4,8 +4,8 @@ $InfluxDB = 'http://172.20.36.115:8086/write?db=telegraf'
 
 
 
-#$Key = 'LAqUlngMIQkIUjXMUreyu3qn'
-#$Secret = 'chNOOS4KvNXR_Xq4k4c9qsfoKWvnDecLATCRlcBwyKDYnWgO'
+#$Key = 'LAqUlXMUreyu3qn'
+#$Secret = 'chNOOS4KvNXR_cLATCRlcBwyKDYnWgO'
 
 
 #$expires = "1518064236"
@@ -16,7 +16,9 @@ $hmacsha = New-Object System.Security.Cryptography.HMACSHA256
 $hmacsha.key = [Text.Encoding]::ASCII.GetBytes($secret)
 
 $baseUri = "https://www.bitmex.com"
-$verb = "GET"$path = "/api/v1/user"
+
+$verb = "GET"
+$path = "/api/v1/user"
 $data = ""
 $toencode = $verb + "" + $path + "" + $expires + "" + $data
 $signature = (($hmacsha.ComputeHash([Text.Encoding]::ASCII.GetBytes($toencode)) | ForEach-Object ToString X2) -join '')
@@ -32,7 +34,12 @@ $Headers = @{
 
 $UserInfo = Invoke-RestMethod -Uri "https://www.bitmex.com/api/v1/user" -Method GET -Headers $Headers  
 
-$verb = "GET"$path = "/api/v1/position"
+
+
+
+
+$verb = "GET"
+$path = "/api/v1/position"
 $data = ""
 
 $toencode = $verb + "" + $path + "" + $expires + "" + $data
@@ -51,7 +58,10 @@ $Positions = Invoke-RestMethod -Uri $Uri -Method GET -Headers $Headers
 
 
 
-$verb = "GET"$path = "/api/v1/user/wallet"
+
+
+$verb = "GET"
+$path = "/api/v1/user/wallet"
 $data = ""
 
 $toencode = $verb + "" + $path + "" + $expires + "" + $data
